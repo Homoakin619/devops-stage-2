@@ -1,0 +1,9 @@
+2024/07/07 08:52:41 [warn] 182#182: 512 worker_connections are not enough, reusing connections
+2024/07/07 08:52:41 [alert] 182#182: 512 worker_connections are not enough
+2024/07/07 08:52:41 [error] 184#184: *989 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: localhost-nginx-proxy-manager, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:80/favicon.ico", host: "localhost", referrer: "http://localhost/"
+2024/07/07 14:38:57 [error] 186#186: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: nginxproxymanager, request: "POST /api/tokens HTTP/1.1", upstream: "http://127.0.0.1:3000/tokens", host: "localhost:8090", referrer: "http://localhost:8090/login"
+2024/07/07 14:54:15 [warn] 155#155: server name "localhost/api" has suspicious symbols in /data/nginx/proxy_host/2.conf:20
+2024/07/07 14:56:12 [warn] 155#155: server name "localhost/api" has suspicious symbols in /data/nginx/proxy_host/2.conf:20
+2024/07/07 15:44:49 [warn] 292#292: 512 worker_connections are not enough, reusing connections
+2024/07/07 15:44:49 [alert] 292#292: 512 worker_connections are not enough
+2024/07/07 15:44:49 [error] 292#292: *1285 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: localhost-nginx-proxy-manager, request: "GET /9e68c24da9f5fd56991c.worker.js.map HTTP/1.1", upstream: "http://127.0.0.1:80/9e68c24da9f5fd56991c.worker.js.map", host: "localhost"

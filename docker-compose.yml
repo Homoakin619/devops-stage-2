@@ -1,0 +1,76 @@
+services:
+  db:
+    image: postgres:13
+    restart: unless-stopped
+    container_name: database
+    env_file:
+      - ./backend/.env
+    ports:
+      - 5432:5432
+    volumes:
+      - dbStore:/var/lib/postgresql/data
+    networks:
+      - webnet
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    tty: true
+    expose:
+      - 5173
+    networks:
+      - webnet
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    tty: true
+    env_file:
+      - ./backend/.env
+    expose:
+      - 8000
+    depends_on:
+      - db
+    networks:
+      - webnet
+
+  proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: proxy
+    ports:
+      - 80:80
+      - 8090:81
+      - 440:443
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    environment:
+      PUID: 1000
+      PGID: 1000
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - webnet
+
+
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    container_name: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - webnet
+
+
+networks:
+  webnet:
+    driver: bridge
+
+volumes:
+  dbStore:
